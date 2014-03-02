@@ -3,7 +3,9 @@ var routes = require('./routes');
 var http = require('http');
 var path = require('path');
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/bookjockeydb');
+mongoose.connect(
+  'mongodb://bookjockey:bookjockey@ds033639.mongolab.com:33639/bookjockey'
+);
 
 var app = express();
 
