@@ -1,8 +1,9 @@
 var Book = require('./../models/book');
 
 exports.display = function(req, res){
-  res.setHeader('Content-Type', 'application/json');
-  Book.findById(req.params.uuid, function(err, book) {
+  res.setHeader('Content-Type', 'application/octet-stream');
+  var id = req.params.filename.split('.')[0];
+  Book.findById(id, function(err, book) {
     if (err) {
       res.end('{"error": "'+err+'"}');
     } else {
@@ -12,7 +13,6 @@ exports.display = function(req, res){
 };
 
 exports.add = function(req, res) {
-  console.log(req.body.book);
   var book = new Book({
     content: req.body.book
   });
@@ -23,7 +23,7 @@ exports.add = function(req, res) {
     if (err) {
       res.end(JSON.stringify({success: false, error: err}));
     } else {
-      res.end(JSON.stringify({success: true, id: book._id}));
+      res.end(JSON.stringify({success: true, filename: book._id+".lima"}));
     }
   });
 };

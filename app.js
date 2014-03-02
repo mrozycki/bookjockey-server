@@ -25,7 +25,7 @@ if ('development' == app.get('env')) {
 }
 
 app.post('/add', routes.add);
-app.get('/:uuid', routes.display);
+app.get('/:filename', routes.display);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Bookjockey server listening on port ' + app.get('port'));
